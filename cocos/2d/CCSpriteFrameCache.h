@@ -238,20 +238,6 @@ protected:
     Map<std::string, SpriteFrame*> _spriteFrames;
     ValueMap _spriteFramesAliases;
     std::set<std::string>*  _loadedFileNames;
-
-    struct AsyncLoadParam
-    {
-        std::function<void(void*, bool)> afterLoadCallback; // callback after load
-        void*                           callbackParam;
-        bool                            resultTexture; // texture load result
-        bool                            resultPList; // plist load result
-        std::string                     plist;
-        std::string                     textureFileName;
-
-        cocos2d::ValueMap               dictionary;
-        cocos2d::Texture2D*             texture;
-        Image*                          image;
-    };
 };
 
 // end of _2d group

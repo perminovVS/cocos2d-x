@@ -460,6 +460,19 @@ SpriteFrame* SpriteFrameCache::getSpriteFrameByName(const std::string& name)
     return frame;
 }
 
+struct AsyncLoadParam
+{
+    std::function<void(void*, bool)> afterLoadCallback; // callback after load
+    void*                           callbackParam;
+    bool                            resultTexture; // texture load result
+    bool                            resultPList; // plist load result
+    std::string                     plist;
+    std::string                     textureFileName;
+
+    cocos2d::ValueMap               dictionary;
+    cocos2d::Texture2D*             texture;
+    Image*                          image;
+};
 void SpriteFrameCache::addSpriteFramesWithFileAsync(const std::string& plist, const std::string& textureFileName, const std::function<void(void*, bool)>& callback, void* callbackparam)
 {
     if (_loadedFileNames->find(plist) != _loadedFileNames->end())
